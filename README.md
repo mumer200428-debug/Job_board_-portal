@@ -110,17 +110,3 @@ TOKEN_EXPIRE_MINUTES=30
 GEMINI_API_KEY=your_google_gemini_api_key
 ```
 
----
-
-## API Documentation
-
-Once the backend is running, visit the interactive Swagger docs at:
-```
-/docs
-```
-
----
-
-## License
-
-MIT
