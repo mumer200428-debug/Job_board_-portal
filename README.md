@@ -1,91 +1,126 @@
 # JobSpark Platform
 
-JobSpark is a modern, full-stack job board platform featuring a built-in AI Career Assistant that helps candidates navigate their job search and write professional emails. It includes custom dashboards for both companies (to post jobs) and candidates (to apply and track applications).
-
-## Tech Stack Overview
-
-### Frontend
-- **Framework**: Next.js 16 (App Router) + React 19
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS v4
-- **Animations**: Framer Motion
-- **UI Architecture**: Radix UI Primitives & shadcn/ui inspired components
-- **Icons**: Lucide React
-- **AI Integration**: Google Gemini API (`gemini-2.5-flash`) via Next.js Route Handlers
-
-### Backend
-- **Framework**: FastAPI (Python)
-- **Server**: Uvicorn
-- **Database**: PostgreSQL
-- **ORM**: SQLAlchemy
-- **Migrations**: Alembic
-- **Authentication**: JWT (JSON Web Tokens) with `python-jose` and `passlib` for password hashing
+> A modern, full-stack AI-powered job board connecting companies and candidates — with a built-in AI Career Assistant.
 
 ---
 
-## Running the Project Locally
+## Tech Stack
 
-### Prerequisites
-- Node.js (v18+)
-- Python (3.9+)
-- PostgreSQL installed and running
+### Frontend
+![Next.js](https://img.shields.io/badge/Next.js_16-000000?style=flat&logo=nextdotjs&logoColor=white)
+![React](https://img.shields.io/badge/React_19-20232A?style=flat&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS_v4-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-black?style=flat&logo=framer&logoColor=white)
 
-### 1. Backend Setup
-Navigate to the root directory and create a virtual environment:
-```bash
-python3 -m venv env
-source env/bin/activate  # On Windows use `env\Scripts\activate`
-```
+### Backend
+![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=flat&logo=fastapi)
+![Python](https://img.shields.io/badge/Python_3.9+-3670A0?style=flat&logo=python&logoColor=ffdd54)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=flat&logo=postgresql&logoColor=white)
+![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-D71F00?style=flat&logo=sqlalchemy&logoColor=white)
 
-Install the dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-Set up your `.env` file in the root directory:
-```env
-DATABASE_URL=postgresql://username:password@localhost/jobboard
-SECRET_KEY=your_super_secret_jwt_key
-ALGORITHM=HS256
-TOKEN_EXPIRE_MINUTES=30
-```
-
-Run the backend server:
-```bash
-uvicorn main:app --reload
-```
-The backend API will run on `http://127.0.0.1:8000`.
-
-### 2. Frontend Setup
-Open a new terminal and navigate to the `frontend` directory:
-```bash
-cd frontend
-```
-
-Install dependencies:
-```bash
-npm install
-```
-
-Set up your `.env.local` file inside the `frontend` directory to enable the AI features:
-```env
-GEMINI_API_KEY=your_google_gemini_api_key_here
-```
-
-Run the frontend server:
-```bash
-npm run dev
-```
-The application will run on `http://localhost:3000`.
+### AI & Auth
+![Google Gemini](https://img.shields.io/badge/Google_Gemini_2.5-4285F4?style=flat&logo=google&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-black?style=flat&logo=JSON%20web%20tokens)
 
 ---
 
 ## Features
-- **Job Discoverability**: Comprehensive search and filtering for job listings.
-- **AI Career Assistant**: A floating chat assistant that guides applicants via the Gemini 2.5 AI model. It automatically reviews your application completely before you apply.
-- **Role-Based Dashboards**: Real-time mock dashboards representing applicant progression and company job management.
-- **Authentication**: Secure JWT-based backend flow.
+
+- **AI Career Assistant** — Floating chat assistant powered by Google Gemini 2.5 Flash. Automatically reviews your full application before submission and helps write professional emails.
+- **Role-Based Dashboards** — Separate real-time dashboards for companies (post & manage jobs) and candidates (apply & track applications).
+- **Job Discovery** — Advanced search and filtering across all job listings.
+- **Secure Authentication** — JWT-based auth with hashed passwords using `passlib`.
+- **Interactive API Docs** — Auto-generated Swagger UI via FastAPI.
+
+---
+
+## Project Structure
+
+```
+job-board-api/
+├── frontend/          # Next.js 16 App Router (TypeScript)
+├── models/            # SQLAlchemy database models
+├── routers/           # FastAPI route handlers
+├── schemas/           # Pydantic request/response schemas
+├── auth.py            # JWT authentication logic
+├── database.py        # Database connection & session
+├── main.py            # FastAPI app entry point
+├── seed.py            # Database seeding script
+└── requirements.txt   # Python dependencies
+```
+
+---
+
+## Getting Started
+
+### Prerequisites
+- Node.js v18+
+- Python 3.9+
+- PostgreSQL
+
+### Backend
+
+```bash
+# Create and activate virtual environment
+python3 -m venv env
+source env/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Configure environment variables
+cp .env.example .env
+# Edit .env with your database URL and secret key
+
+# Start the server
+uvicorn main:app --reload
+```
+
+### Frontend
+
+```bash
+cd frontend
+
+# Install dependencies
+npm install
+
+# Configure environment variables
+cp .env.example .env.local
+# Add your Google Gemini API key
+
+# Start the dev server
+npm run dev
+```
+
+---
+
+## Environment Variables
+
+### Backend `.env`
+```
+DATABASE_URL=your_postgresql_connection_string
+SECRET_KEY=your_jwt_secret_key
+ALGORITHM=HS256
+TOKEN_EXPIRE_MINUTES=30
+```
+
+### Frontend `.env.local`
+```
+GEMINI_API_KEY=your_google_gemini_api_key
+```
+
+---
 
 ## API Documentation
-Once the backend is running, you can access the interactive Swagger documentation provided automatically by FastAPI at:
-- `http://127.0.0.1:8000/docs`
+
+Once the backend is running, visit the interactive Swagger docs at:
+```
+/docs
+```
+
+---
+
+## License
+
+MIT
