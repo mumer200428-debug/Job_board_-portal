@@ -1,6 +1,6 @@
 # JobSpark Platform
 
-> A modern, full-stack AI-powered job board connecting companies and candidates — with a built-in AI Career Assistant.
+> A modern, full-stack AI-powered job board connecting companies and candidates  with a built-in AI Career Assistant.
 
 ---
 
